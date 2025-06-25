@@ -75,14 +75,12 @@
   </style>
 </head>
 <body>
-
-  <!-- PHÁT NHẠC -->
-  <audio id="birthdayMusic" loop>
-    <source src="audio/happy.mp3" type="audio/mpeg">
-    Trình duyệt của bạn không hỗ trợ âm thanh.
+  <!-- TỰ PHÁT NHẠC -->
+  <audio id="birthdayMusic" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- NỘI DUNG CHÍNH -->
+  <!-- PHẦN 1: Chúc mừng sinh nhật -->
   <div id="section1" class="section active">
     <div class="flag__birthday">
       <img src="./images/1.png" alt="" width="350" class="flag__left">
@@ -119,7 +117,7 @@
     </div>
   </div>
 
-  <!-- THƯ -->
+  <!-- PHẦN 2: Thư -->
   <div id="section2" class="section">
     <div class="box__letter">
       <div class="letter__border">
@@ -128,7 +126,7 @@
           <div class="overlay-bg">
             <div class="content__letter">
               <div class="left">
-                <img id="heart__letter" src="https://media.giphy.com/media/VyB31XTqZNJhFRZNyl/giphy.gif" alt="">
+                <img id="heart__letter" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYncwejJiejZ5ajNtNzNhd3Z0dXUyYW9vZG9rMHlqbzdsbnBsd2E3NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/VyB31XTqZNJhFRZNyl/giphy.gif" alt="">
                 <img class="heart heart_1" width="5" src="./images/heart.png" alt="">
                 <img class="heart heart_2" width="5" src="./images/heart.png" alt="">
                 <img class="heart heart_3" width="5" src="./images/heart.png" alt="">
@@ -136,9 +134,11 @@
               </div>
               <div class="right">
                 <div class="love__img">
-                  <img src="https://media.giphy.com/media/DyQrKMpqkAhNHZ1iWe/giphy.gif" alt="" width="50">
+                  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjZ4eGx3anBzMm8zcmpicGI5bnF0aDQybTFqNjNqaDN3empsdXhoMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/DyQrKMpqkAhNHZ1iWe/giphy.gif" alt="" width="50">
                 </div>
-                <div class="text__letter"><p></p></div>
+                <div class="text__letter">
+                  <p></p>
+                </div>
                 <img id="mewmew" width="50" src="./images/mewmew.gif" alt="">
               </div>
               <div class="title__letter"></div>
@@ -150,7 +150,6 @@
     </div>
   </div>
 
-  <!-- SCRIPT -->
   <script>
     const datetxt = "25-06-2009";
     const datatxtletter = `✨ Chúc mừng sinh nhật nha! Chúc bạn tuổi mới thật vui vẻ, luôn cười tươi, học tốt và gặp nhiều điều may mắn. Hy vọng bạn sẽ luôn giữ được sự dễ thương và đáng yêu như bây giờ. Chúc sinh nhật thật hạnh phúc và nhận được thật nhiều quà nha! 🎂🎁💖`;
@@ -170,11 +169,12 @@
     setTimeout(() => {
       const interval = setInterval(() => {
         if (index < datetxt.length) {
-          dateSpan.textContent += datetxt[index++];
+          dateSpan.textContent += datetxt[index];
+          index++;
         } else {
           clearInterval(interval);
-          document.querySelector(".date__of__birth").prepend(Object.assign(document.createElement("i"), {className: "fa-solid fa-star"}));
-          document.querySelector(".date__of__birth").append(Object.assign(document.createElement("i"), {className: "fa-solid fa-star"}));
+          document.querySelector(".date__of__birth").prepend(document.createElement("i")).className = "fa-solid fa-star";
+          document.querySelector(".date__of__birth").appendChild(document.createElement("i")).className = "fa-solid fa-star";
           finished = true;
           transitionTimeout = setTimeout(startTransition, 5000);
         }
@@ -187,22 +187,25 @@
     });
 
     function showLetter() {
-      const titleEl = document.querySelector(".title__letter");
-      const contentEl = document.querySelector(".text__letter p");
-      let titleIndex = 0, contentIndex = 0;
+      const charArrTitle = titleLetter.split('');
+      const charArrContent = datatxtletter.split('');
+      let currentIndexTitle = 0;
+      let currentIndexLetter = 0;
 
       $(".box__letter").slideDown();
       setTimeout(() => $(".letter__border").slideDown(), 1000);
 
       setTimeout(() => {
-        const interval = setInterval(() => {
-          if (titleIndex < titleLetter.length) {
-            titleEl.textContent += titleLetter[titleIndex++];
-            const heart = document.createElement("i");
-            heart.className = "fa-solid fa-heart";
-            titleEl.appendChild(heart);
+        const intervalTitle = setInterval(() => {
+          if (currentIndexTitle < charArrTitle.length) {
+            const el = document.querySelector(".title__letter");
+            el.textContent += charArrTitle[currentIndexTitle];
+            const i = document.createElement("i");
+            i.className = "fa-solid fa-heart";
+            el.appendChild(i);
+            currentIndexTitle++;
           } else {
-            clearInterval(interval);
+            clearInterval(intervalTitle);
           }
         }, 100);
       }, 2000);
@@ -218,22 +221,17 @@
       }, 3500);
 
       setTimeout(() => {
-        const interval = setInterval(() => {
-          if (contentIndex < datatxtletter.length) {
-            contentEl.textContent += datatxtletter[contentIndex++];
+        const p = document.querySelector(".text__letter p");
+        const intervalContent = setInterval(() => {
+          if (currentIndexLetter < charArrContent.length) {
+            p.textContent += charArrContent[currentIndexLetter];
+            currentIndexLetter++;
           } else {
-            clearInterval(interval);
+            clearInterval(intervalContent);
           }
         }, 50);
       }, 6000);
     }
-
-    // 👉 PHÁT NHẠC SAU CLICK
-    document.addEventListener("click", () => {
-      const audio = document.getElementById("birthdayMusic");
-      if (audio.paused) audio.play().catch(() => {});
-    });
   </script>
-
 </body>
 </html>
