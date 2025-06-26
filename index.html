@@ -80,9 +80,11 @@
     const music = document.getElementById("birthdayMusic");
 
     const playMusic = () => {
-      music.play().catch((e) => {
-        // Nếu bị chặn do chưa tương tác, phát khi người dùng click
+      music.muted = false; // Bỏ mute sau khi bắt đầu phát
+      music.play().catch(() => {
+        // Nếu bị chặn, phát khi người dùng click bất kỳ
         document.body.addEventListener("click", () => {
+          music.muted = false;
           music.play();
         }, { once: true });
       });
@@ -91,9 +93,8 @@
     playMusic();
   });
 </script>
-
   <!-- TỰ PHÁT NHẠC -->
-  <audio id="birthdayMusic" autoplay loop>
+  <audio id="birthdayMusic" autoplay loop muted>
   <source src="./audio/cmsn.mp3" type="audio/mpeg">
 </audio>
 
