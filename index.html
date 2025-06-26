@@ -1,98 +1,83 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chúc mừng sinh nhật</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <audio id="birthdayMusic" loop>
-    <source src="./audio/music.mp3" type="audio/mpeg">
+  <!-- NHẠC NỀN -->
+  <audio id="birthdayMusic" autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
   </audio>
 
-  <div id="wrapper">
+  <!-- PHẦN 1: Intro Chúc mừng sinh nhật -->
+  <div id="section1" class="section active">
     <div class="flag__birthday">
-      <img src="./images/1.png" alt="">
-      <img src="./images/1.png" alt="">
+      <img src="./images/1.png" alt="" width="350" class="flag__left">
+      <img src="./images/1.png" alt="" width="350" class="flag__right">
     </div>
-
     <div class="content">
       <div class="left">
         <div class="title">
           <h1 class="happy">
-            <span style="--t:4s;">H</span><span style="--t:4.2s;">a</span><span style="--t:4.4s;">p</span><span style="--t:4.6s;">p</span><span style="--t:4.8s;">y</span>
+            <span style="--t: 4s;">H</span><span style="--t: 4.2s;">a</span><span style="--t: 4.4s;">p</span><span style="--t: 4.6s;">p</span><span style="--t: 4.8s;">y</span>
           </h1>
           <h1 class="birthday">
-            <span style="--t:5s;">B</span><span style="--t:5.2s;">i</span><span style="--t:5.4s;">r</span><span style="--t:5.6s;">t</span><span style="--t:5.8s;">h</span><span style="--t:6s;">d</span><span style="--t:6.2s;">a</span><span style="--t:6.4s;">y</span>
+            <span style="--t: 5s;">B</span><span style="--t: 5.2s;">i</span><span style="--t: 5.4s;">r</span><span style="--t: 5.6s;">t</span><span style="--t: 5.8s;">h</span><span style="--t: 6s;">d</span><span style="--t: 6.2s;">a</span><span style="--t: 6.4s;">y</span>
           </h1>
-          <div class="hat"><img src="./images/hat.png" alt=""></div>
+          <div class="hat"><img src="./images/hat.png" alt="" width="130"></div>
         </div>
-
-        <div class="date__of__birth"><span>25-06-2009</span></div>
-
-        <button id="btn__letter">Ấn vào đây nè cậu <i class="fa-regular fa-envelope"></i></button>
+        <div class="date__of__birth"><span></span></div>
+        <div class="btn">
+          <button id="btn__letter">Ấn vào đây nè cậu <i class="fa-regular fa-envelope"></i></button>
+        </div>
       </div>
-
       <div class="right">
         <div class="box__account">
           <div class="image">
-            <img src="./images/ha.jpg" alt="Người nhận">
-            <div class="cricle">
-              <div class="text__cricle">
-                <span style="--i:0;">T</span>
-                <span style="--i:1;">H</span>
-                <span style="--i:2;">A</span>
-                <span style="--i:3;">N</span>
-                <span style="--i:4;">H</span>
-                <span style="--i:5;">♥</span>
-              </div>
-              <i class="fa-solid fa-heart"></i>
-            </div>
+            <img src="./images/ha.jpg" alt=""/>
           </div>
           <div class="name">
-            <i class="fa-solid fa-heart"></i> Nguyễn Minh Nguyên <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-heart"></i>
+            <span>Nguyễn Minh Nguyên</span>
+            <i class="fa-solid fa-heart"></i>
           </div>
-          <img class="balloon_one" src="./images/balloon.png" alt="">
-          <img class="balloon_two" src="./images/balloon.png" alt="">
         </div>
       </div>
     </div>
-
-    <!-- Các ngôi sao trang trí -->
-    <div class="decorate_star star1" style="--t:13s;"></div>
-    <div class="decorate_star star2" style="--t:13.3s;"></div>
-    <div class="decorate_star star3" style="--t:13.6s;"></div>
-    <div class="decorate_star star4" style="--t:13.9s;"></div>
-    <div class="decorate_star star5" style="--t:14.2s;"></div>
-
-    <!-- Hoa và mặt cười -->
-    <img class="decorate_flower--one" src="./images/flower.png" style="--t:12.5s;" alt="">
-    <img class="decorate_flower--two" src="./images/flower.png" style="--t:12.8s;" alt="">
-    <img class="decorate_flower--three" src="./images/flower.png" style="--t:13.1s;" alt="">
-    <img class="smiley__icon" src="./images/smiley.png" alt="">
   </div>
 
-  <!-- PHẦN 2: Thư -->
-  <div class="box__letter" id="boxLetter">
-    <div class="letter__border">
-      <div class="close" onclick="closeLetter()"><i class="fa-solid fa-xmark"></i></div>
-      <div class="letter">
-        <div class="title__letter" id="titleLetter"></div>
-        <div class="content__letter">
-          <div class="left">
-            <img id="heart__letter" src="https://media.giphy.com/media/VyB31XTqZNJhFRZNyl/giphy.gif" alt="">
-            <img class="heart heart_1" src="./images/heart.png" style="--t:0.3s;" alt="">
-            <img class="heart heart_2" src="./images/heart.png" style="--t:0.6s;" alt="">
-            <img class="heart heart_3" src="./images/heart.png" style="--t:0.9s;" alt="">
-            <img class="heart heart_4" src="./images/heart.png" style="--t:1.2s;" alt="">
-          </div>
-          <div class="right">
-            <div class="love__img"><img src="https://media.giphy.com/media/DyQrKMpqkAhNHZ1iWe/giphy.gif" alt="" width="50"></div>
-            <div class="text__letter" id="textLetter"></div>
-            <img id="mewmew" src="./images/mewmew.gif" width="50" alt="">
+  <!-- PHẦN 2: Thư Với Video Nền -->
+  <div id="section2" class="section">
+    <div class="box__letter">
+      <div class="letter__border">
+        <div class="letter">
+          <video class="letter__bg-video" src="./video.mp4" autoplay muted loop></video>
+          <div class="overlay-bg">
+            <div class="content__letter">
+              <div class="left">
+                <img id="heart__letter" src="./images/heart.gif" alt="">
+                <img class="heart heart_1" width="5" src="./images/heart.png" alt="">
+                <img class="heart heart_2" width="5" src="./images/heart.png" alt="">
+                <img class="heart heart_3" width="5" src="./images/heart.png" alt="">
+                <img class="heart heart_4" width="5" src="./images/heart.png" alt="">
+              </div>
+              <div class="right">
+                <div class="love__img">
+                  <img src="./images/love.gif" alt="" width="50">
+                </div>
+                <div class="text__letter">
+                  <p></p>
+                </div>
+                <img id="mewmew" width="50" src="./images/mewmew.gif" alt="">
+              </div>
+              <div class="title__letter"></div>
+              <div class="close"><i class="fa-solid fa-xmark"></i></div>
+            </div>
           </div>
         </div>
       </div>
@@ -101,56 +86,86 @@
 
   <script>
     const datetxt = "25-06-2009";
-    const datatxtletter = `✨ Chúc mừng sinh nhật nha! Chúc bạn tuổi mới thật vui vẻ, luôn cười tươi, học tốt và gặp nhiều điều may mắn. Hy vọng bạn sẽ luôn giữ được sự dễ thương và đáng yêu như bây giờ. Chúc sinh nhật thật hạnh phúc và nhận được thật nhiều quà nha! 🎂🎁💖`;
+    const datatxtletter = `✨ Chúc mừng sinh nhật nha! Chúc bạn tuổi mới thật vui vẻ, luôn cười tươi, học tốt và gặp nhiều điều may mắn. Hy vọng bạn sẽ luôn giữ được sự dễ thương và đáng yêu như bây giờ. Chúc sinh nhật thật hạnh phúc và nhận được thật nhiều quà nha! 🎂🏱💖`;
     const titleLetter = "Gửi Nguyên";
 
-    document.getElementById("btn__letter").addEventListener("click", function () {
-      document.getElementById("boxLetter").style.display = "flex";
+    const dateSpan = document.querySelector(".date__of__birth span");
+    let index = 0;
+    let finished = false;
+    let transitionTimeout;
 
-      let i = 0;
-      let j = 0;
-      const titleEl = document.getElementById("titleLetter");
-      const textEl = document.getElementById("textLetter");
-
-      titleEl.textContent = "";
-      textEl.textContent = "";
-
-      // typing title
-      const titleTyping = setInterval(() => {
-        if (i < titleLetter.length) {
-          titleEl.textContent += titleLetter[i];
-          i++;
-        } else {
-          clearInterval(titleTyping);
-        }
-      }, 150);
-
-      // typing content
-      const textTyping = setInterval(() => {
-        if (j < datatxtletter.length) {
-          textEl.textContent += datatxtletter[j];
-          j++;
-        } else {
-          clearInterval(textTyping);
-        }
-      }, 50);
-
-      document.getElementById("heart__letter").classList.add("animationOp");
-      document.querySelectorAll(".heart").forEach(h => h.classList.add("animation"));
-      document.querySelector(".love__img").classList.add("animationOp");
-      document.getElementById("mewmew").classList.add("animationOp");
-    });
-
-    function closeLetter() {
-      document.getElementById("boxLetter").style.display = "none";
+    function startTransition() {
+      document.getElementById("section1").classList.remove("active");
+      document.getElementById("section2").classList.add("active");
+      showLetter();
     }
 
-    // Phát nhạc tự động
-    window.onload = () => {
-      const audio = document.getElementById("birthdayMusic");
-      audio.volume = 0.5;
-      audio.play().catch(() => {});
-    };
+    setTimeout(() => {
+      const interval = setInterval(() => {
+        if (index < datetxt.length) {
+          dateSpan.textContent += datetxt[index];
+          index++;
+        } else {
+          clearInterval(interval);
+          document.querySelector(".date__of__birth").prepend(document.createElement("i")).className = "fa-solid fa-star";
+          document.querySelector(".date__of__birth").appendChild(document.createElement("i")).className = "fa-solid fa-star";
+          finished = true;
+          transitionTimeout = setTimeout(startTransition, 5000);
+        }
+      }, 100);
+    }, 1000);
+
+    document.getElementById("btn__letter").addEventListener("click", () => {
+      if (!finished) clearTimeout(transitionTimeout);
+      startTransition();
+    });
+
+    function showLetter() {
+      const charArrTitle = titleLetter.split('');
+      const charArrContent = datatxtletter.split('');
+      let currentIndexTitle = 0;
+      let currentIndexLetter = 0;
+
+      $(".box__letter").slideDown();
+      setTimeout(() => $(".letter__border").slideDown(), 1000);
+
+      setTimeout(() => {
+        const intervalTitle = setInterval(() => {
+          if (currentIndexTitle < charArrTitle.length) {
+            const el = document.querySelector(".title__letter");
+            el.textContent += charArrTitle[currentIndexTitle];
+            const i = document.createElement("i");
+            i.className = "fa-solid fa-heart";
+            el.appendChild(i);
+            currentIndexTitle++;
+          } else {
+            clearInterval(intervalTitle);
+          }
+        }, 100);
+      }, 2000);
+
+      setTimeout(() => {
+        document.querySelector("#heart__letter").classList.add("animationOp");
+        document.querySelector(".love__img").classList.add("animationOp");
+        document.querySelector("#mewmew").classList.add("animationOp");
+      }, 2800);
+
+      setTimeout(() => {
+        document.querySelectorAll(".heart").forEach(item => item.classList.add("animation"));
+      }, 3500);
+
+      setTimeout(() => {
+        const p = document.querySelector(".text__letter p");
+        const intervalContent = setInterval(() => {
+          if (currentIndexLetter < charArrContent.length) {
+            p.textContent += charArrContent[currentIndexLetter];
+            currentIndexLetter++;
+          } else {
+            clearInterval(intervalContent);
+          }
+        }, 50);
+      }, 6000);
+    }
   </script>
 </body>
 </html>
