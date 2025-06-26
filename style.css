@@ -605,3 +605,11 @@ body {
 #mewmew.animationOp{
     animation: opacityHeart 1s 1s forwards;
 }
+/* Làm nền mờ trắng cho phần nội dung thư */
+.content__letter .right .text__letter {
+    background-color: rgba(255, 255, 255, 0.8); /* nền trắng mờ */
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    padding: 25px;
+    color: #333; /* Đảm bảo chữ dễ đọc */
+}
