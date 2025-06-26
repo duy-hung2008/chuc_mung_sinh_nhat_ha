@@ -72,103 +72,70 @@
       line-height: 1.6;
       font-size: 18px;
     }
+    #intro-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #ffe0eb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #intro-screen h2 {
+      color: #d6336c;
+      margin-bottom: 20px;
+    }
+    #intro-screen button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #d6336c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <script>
-  window.addEventListener("DOMContentLoaded", function () {
-    const music = document.getElementById("birthdayMusic");
 
-    const playMusic = () => {
-      music.muted = false; // Bỏ mute sau khi bắt đầu phát
-      music.play().catch(() => {
-        // Nếu bị chặn, phát khi người dùng click bất kỳ
-        document.body.addEventListener("click", () => {
-          music.muted = false;
-          music.play();
-        }, { once: true });
-      });
-    };
+<!-- MÀN HÌNH CHỜ -->
+<div id="intro-screen">
+  <h2>🎉 Bấm vào đây đi 🎶</h2>
+  <button id="startBtn">Bắt đầu</button>
+</div>
 
-    playMusic();
-  });
-</script>
-  <!-- TỰ PHÁT NHẠC -->
-  <audio id="birthdayMusic" autoplay loop muted>
+<!-- NHẠC -->
+<audio id="birthdayMusic" loop>
   <source src="./audio/cmsn.mp3" type="audio/mpeg">
 </audio>
 
-  <!-- PHẦN 1: Chúc mừng sinh nhật -->
-  <div id="section1" class="section active">
-    <div class="flag__birthday">
-      <img src="./images/1.png" alt="" width="350" class="flag__left">
-      <img src="./images/1.png" alt="" width="350" class="flag__right">
-    </div>
-    <div class="content">
-      <div class="left">
-        <div class="title">
-          <h1 class="happy">
-            <span style="--t: 4s;">H</span><span style="--t: 4.2s;">a</span><span style="--t: 4.4s;">p</span><span style="--t: 4.6s;">p</span><span style="--t: 4.8s;">y</span>
-          </h1>
-          <h1 class="birthday">
-            <span style="--t: 5s;">B</span><span style="--t: 5.2s;">i</span><span style="--t: 5.4s;">r</span><span style="--t: 5.6s;">t</span><span style="--t: 5.8s;">h</span><span style="--t: 6s;">d</span><span style="--t: 6.2s;">a</span><span style="--t: 6.4s;">y</span>
-          </h1>
-          <div class="hat"><img src="./images/hat.png" alt="" width="130"></div>
-        </div>
-        <div class="date__of__birth"><span></span></div>
-        <div class="btn">
-          <button id="btn__letter">Ấn vào đây nè cậu <i class="fa-regular fa-envelope"></i></button>
-        </div>
-      </div>
-      <div class="right">
-        <div class="box__account">
-          <div class="image">
-            <img src="./images/ha.jpg" alt=""/>
-          </div>
-          <div class="name">
-            <i class="fa-solid fa-heart"></i>
-            <span>Nguyễn Minh Nguyên</span>
-            <i class="fa-solid fa-heart"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- PHẦN 1 -->
+<div id="section1" class="section">
+  <!-- ... giữ nguyên phần hiển thị Happy Birthday như bạn đã viết ... -->
+</div>
 
-  <!-- PHẦN 2: Thư -->
-  <div id="section2" class="section">
-    <div class="box__letter">
-      <div class="letter__border">
-        <div class="letter">
-          <iframe class="letter__bg" src="https://taoanhdep.com/love/?b=eyJ0IjpbImNow7pjIG3hu6tuZyBzaW5oIG5o4bqtdCBOZ3V5w6puIiwiTmd1ecOqbiBzaW5oIG5o4bqtdCB2dWkgduG6uyIsImNow7pjIG3hu6tuZyBzaW5oIGPhuq11IG5ow6kiLCJzaW5oIG5o4bqtdCB2dWkgduG6uyBuaGEiXX0=" allowfullscreen></iframe>
-          <div class="overlay-bg">
-            <div class="content__letter">
-              <div class="left">
-                <img id="heart__letter" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYncwejJiejZ5ajNtNzNhd3Z0dXUyYW9vZG9rMHlqbzdsbnBsd2E3NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/VyB31XTqZNJhFRZNyl/giphy.gif" alt="">
-                <img class="heart heart_1" width="5" src="./images/heart.png" alt="">
-                <img class="heart heart_2" width="5" src="./images/heart.png" alt="">
-                <img class="heart heart_3" width="5" src="./images/heart.png" alt="">
-                <img class="heart heart_4" width="5" src="./images/heart.png" alt="">
-              </div>
-              <div class="right">
-                <div class="love__img">
-                  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjZ4eGx3anBzMm8zcmpicGI5bnF0aDQybTFqNjNqaDN3empsdXhoMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/DyQrKMpqkAhNHZ1iWe/giphy.gif" alt="" width="50">
-                </div>
-                <div class="text__letter">
-                  <p></p>
-                </div>
-                <img id="mewmew" width="50" src="./images/mewmew.gif" alt="">
-              </div>
-              <div class="title__letter"></div>
-              <div class="close"><i class="fa-solid fa-xmark"></i></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- PHẦN 2 -->
+<div id="section2" class="section">
+  <!-- ... giữ nguyên phần hiển thị thư như bạn đã viết ... -->
+</div>
 
-  <script>
+<script>
+  const music = document.getElementById("birthdayMusic");
+  const introScreen = document.getElementById("intro-screen");
+  const startBtn = document.getElementById("startBtn");
+
+  startBtn.addEventListener("click", () => {
+    introScreen.style.display = "none";
+    music.play().catch(e => {
+      alert("Trình duyệt không cho phát nhạc tự động, hãy thử lại!");
+    });
+    document.getElementById("section1").classList.add("active");
+    initBirthday();
+  });
+
+  function initBirthday() {
     const datetxt = "25-06-2009";
     const datatxtletter = `✨ Chúc mừng sinh nhật nha! Chúc bạn tuổi mới thật vui vẻ, luôn cười tươi, học tốt và gặp nhiều điều may mắn. Hy vọng bạn sẽ luôn giữ được sự dễ thương và đáng yêu như bây giờ. Chúc sinh nhật thật hạnh phúc và nhận được thật nhiều quà nha! 🎂🎁💖`;
     const titleLetter = "Gửi Nguyên";
@@ -250,6 +217,7 @@
         }, 50);
       }, 6000);
     }
-  </script>
+  }
+</script>
 </body>
 </html>
