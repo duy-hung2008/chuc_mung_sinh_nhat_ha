@@ -1,39 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chúc mừng sinh nhật</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <style>
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
       background: #fff5f8;
     }
-    .letter {
-      position: relative;
-      overflow: hidden;
-    }
-    .letter__bg {
-      position: absolute;
+    .section { display: none; }
+    .section.active { display: block; }
+    .intro-screen {
+      position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      z-index: 1;
+      background: #ffdce5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .intro-screen button {
+      font-size: 24px;
+      padding: 20px 40px;
+      background: #ff5b8a;
       border: none;
-      pointer-events: none;
-    }
-    .content__letter, .title__letter, .close {
-      position: relative;
-      z-index: 2;
-    }
-    .section {
-      display: none;
-    }
-    .section.active {
-      display: block;
+      border-radius: 15px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
     }
     .box__letter, .letter__border {
       display: none;
@@ -76,18 +76,17 @@
 </head>
 <body>
 
-<!-- PHẦN INTRO -->
-<div id="intro-screen" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#fff5f8;z-index:9999;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-  <h1 style="color:#d00;font-size:2em;">🎵 Bấm vào đây đi 🎉</h1>
-  <button id="startBtn" style="padding:15px 30px;font-size:20px;border:none;background-color:#ff6699;color:white;border-radius:10px;cursor:pointer;">Bắt đầu</button>
+<!-- Intro -->
+<div class="intro-screen" id="intro">
+  <button onclick="startApp()">Bấm vào đây đi 🎉</button>
 </div>
 
-<!-- AUDIO PHÁT NHẠC -->
+<!-- Nhạc -->
 <audio id="birthdayMusic" autoplay loop muted>
   <source src="./audio/cmsn.mp3" type="audio/mpeg">
 </audio>
 
-<!-- PHẦN 1 -->
+<!-- Phần 1 -->
 <div id="section1" class="section">
   <div class="flag__birthday">
     <img src="./images/1.png" alt="" width="350" class="flag__left">
@@ -111,20 +110,14 @@
     </div>
     <div class="right">
       <div class="box__account">
-        <div class="image">
-          <img src="./images/ha.jpg" alt=""/>
-        </div>
-        <div class="name">
-          <i class="fa-solid fa-heart"></i>
-          <span>Nguyễn Minh Nguyên</span>
-          <i class="fa-solid fa-heart"></i>
-        </div>
+        <div class="image"><img src="./images/ha.jpg" alt=""/></div>
+        <div class="name"><i class="fa-solid fa-heart"></i><span>Nguyễn Minh Nguyên</span><i class="fa-solid fa-heart"></i></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PHẦN 2 -->
+<!-- Phần 2 -->
 <div id="section2" class="section">
   <div class="box__letter">
     <div class="letter__border">
@@ -133,7 +126,7 @@
         <div class="overlay-bg">
           <div class="content__letter">
             <div class="left">
-              <img id="heart__letter" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYncwejJiejZ5ajNtNzNhd3Z0dXUyYW9vZG9rMHlqbzdsbnBsd2E3NCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/VyB31XTqZNJhFRZNyl/giphy.gif" alt="">
+              <img id="heart__letter" src="https://media.giphy.com/media/VyB31XTqZNJhFRZNyl/giphy.gif" alt="">
               <img class="heart heart_1" width="5" src="./images/heart.png" alt="">
               <img class="heart heart_2" width="5" src="./images/heart.png" alt="">
               <img class="heart heart_3" width="5" src="./images/heart.png" alt="">
@@ -141,11 +134,9 @@
             </div>
             <div class="right">
               <div class="love__img">
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjZ4eGx3anBzMm8zcmpicGI5bnF0aDQybTFqNjNqaDN3empsdXhoMiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/DyQrKMpqkAhNHZ1iWe/giphy.gif" alt="" width="50">
+                <img src="https://media.giphy.com/media/DyQrKMpqkAhNHZ1iWe/giphy.gif" alt="" width="50">
               </div>
-              <div class="text__letter">
-                <p></p>
-              </div>
+              <div class="text__letter"><p></p></div>
               <img id="mewmew" width="50" src="./images/mewmew.gif" alt="">
             </div>
             <div class="title__letter"></div>
@@ -157,77 +148,66 @@
   </div>
 </div>
 
+<!-- Script -->
 <script>
+function startApp() {
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("section1").classList.add("active");
+
+  const music = document.getElementById("birthdayMusic");
+  music.muted = false;
+  music.play();
+
+  // Chạy hiệu ứng gõ ngày sinh
   const datetxt = "25-06-2009";
   const datatxtletter = `✨ Chúc mừng sinh nhật nha! Chúc bạn tuổi mới thật vui vẻ, luôn cười tươi, học tốt và gặp nhiều điều may mắn. Hy vọng bạn sẽ luôn giữ được sự dễ thương và đáng yêu như bây giờ. Chúc sinh nhật thật hạnh phúc và nhận được thật nhiều quà nha! 🎂🎁💖`;
   const titleLetter = "Gửi Nguyên";
 
-  const music = document.getElementById("birthdayMusic");
-  const intro = document.getElementById("intro-screen");
-  const section1 = document.getElementById("section1");
+  const dateSpan = document.querySelector(".date__of__birth span");
+  let index = 0, finished = false;
+  let transitionTimeout;
 
-  document.getElementById("startBtn").addEventListener("click", () => {
-    intro.style.display = "none";
-    music.muted = false;
-    music.play().catch(() => {});
-    section1.classList.add("active");
-    initBirthday();
+  const interval = setInterval(() => {
+    if (index < datetxt.length) {
+      dateSpan.textContent += datetxt[index++];
+    } else {
+      clearInterval(interval);
+      document.querySelector(".date__of__birth").prepend(document.createElement("i")).className = "fa-solid fa-star";
+      document.querySelector(".date__of__birth").appendChild(document.createElement("i")).className = "fa-solid fa-star";
+      finished = true;
+      transitionTimeout = setTimeout(startTransition, 5000);
+    }
+  }, 100);
+
+  document.getElementById("btn__letter").addEventListener("click", () => {
+    if (!finished) clearTimeout(transitionTimeout);
+    startTransition();
   });
 
-  function initBirthday() {
-    const dateSpan = document.querySelector(".date__of__birth span");
-    let index = 0;
-    let finished = false;
-    let transitionTimeout;
-
-    function startTransition() {
-      document.getElementById("section1").classList.remove("active");
-      document.getElementById("section2").classList.add("active");
-      showLetter();
-    }
-
-    setTimeout(() => {
-      const interval = setInterval(() => {
-        if (index < datetxt.length) {
-          dateSpan.textContent += datetxt[index];
-          index++;
-        } else {
-          clearInterval(interval);
-          document.querySelector(".date__of__birth").prepend(document.createElement("i")).className = "fa-solid fa-star";
-          document.querySelector(".date__of__birth").appendChild(document.createElement("i")).className = "fa-solid fa-star";
-          finished = true;
-          transitionTimeout = setTimeout(startTransition, 5000);
-        }
-      }, 100);
-    }, 1000);
-
-    document.getElementById("btn__letter").addEventListener("click", () => {
-      if (!finished) clearTimeout(transitionTimeout);
-      startTransition();
-    });
+  function startTransition() {
+    document.getElementById("section1").classList.remove("active");
+    document.getElementById("section2").classList.add("active");
+    showLetter();
   }
 
   function showLetter() {
-    const charArrTitle = titleLetter.split('');
-    const charArrContent = datatxtletter.split('');
-    let currentIndexTitle = 0;
-    let currentIndexLetter = 0;
+    const titleArr = titleLetter.split('');
+    const contentArr = datatxtletter.split('');
+    let i = 0, j = 0;
 
     $(".box__letter").slideDown();
     setTimeout(() => $(".letter__border").slideDown(), 1000);
 
     setTimeout(() => {
+      const el = document.querySelector(".title__letter");
       const intervalTitle = setInterval(() => {
-        if (currentIndexTitle < charArrTitle.length) {
-          const el = document.querySelector(".title__letter");
-          el.textContent += charArrTitle[currentIndexTitle];
-          const i = document.createElement("i");
-          i.className = "fa-solid fa-heart";
-          el.appendChild(i);
-          currentIndexTitle++;
-        } else {
-          clearInterval(intervalTitle);
-        }
+        if (i < titleArr.length) {
+          el.textContent += titleArr[i];
+          const heart = document.createElement("i");
+          heart.className = "fa-solid fa-heart";
+          el.appendChild(heart);
+          i++;
+        } else clearInterval(intervalTitle);
       }, 100);
     }, 2000);
 
@@ -238,21 +218,20 @@
     }, 2800);
 
     setTimeout(() => {
-      document.querySelectorAll(".heart").forEach(item => item.classList.add("animation"));
+      document.querySelectorAll(".heart").forEach(h => h.classList.add("animation"));
     }, 3500);
 
     setTimeout(() => {
       const p = document.querySelector(".text__letter p");
       const intervalContent = setInterval(() => {
-        if (currentIndexLetter < charArrContent.length) {
-          p.textContent += charArrContent[currentIndexLetter];
-          currentIndexLetter++;
-        } else {
-          clearInterval(intervalContent);
-        }
+        if (j < contentArr.length) {
+          p.textContent += contentArr[j++];
+        } else clearInterval(intervalContent);
       }, 50);
     }, 6000);
   }
+}
 </script>
+
 </body>
 </html>
