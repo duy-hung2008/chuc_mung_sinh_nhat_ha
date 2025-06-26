@@ -75,6 +75,23 @@
   </style>
 </head>
 <body>
+  <script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const music = document.getElementById("birthdayMusic");
+
+    const playMusic = () => {
+      music.play().catch((e) => {
+        // Nếu bị chặn do chưa tương tác, phát khi người dùng click
+        document.body.addEventListener("click", () => {
+          music.play();
+        }, { once: true });
+      });
+    };
+
+    playMusic();
+  });
+</script>
+
   <!-- TỰ PHÁT NHẠC -->
   <audio id="birthdayMusic" autoplay loop>
   <source src="./audio/cmsn.mp3" type="audio/mpeg">
